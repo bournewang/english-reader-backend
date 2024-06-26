@@ -3,7 +3,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..models.article import Article
 from ..models.paragraph import Paragraph
 from ..extensions import db
-from ..article_helper import article_json
 import time
 
 articles_bp = Blueprint('articles', __name__)
@@ -13,14 +12,21 @@ articles_bp = Blueprint('articles', __name__)
 def create_article():
     data = request.get_json()
     user_id = get_jwt_identity()
-    title = data.get('title')
     paragraphs = data.get('paragraphs')
 
     try:
         paragraphs = [p for p in paragraphs if p and p.strip()]
         word_count = sum(len(paragraph.split()) for paragraph in paragraphs)
 
-        new_article = Article(user_id=user_id, title=title, word_count=word_count)
+        new_article = Article(
+            user_id=user_id, 
+            title=data.get('title'),
+            word_count=word_count,
+            author=data.get('author'),
+            url=data.get('url'),
+            site_name=data.get('site_name'),
+            site_icon=data.get('site_icon')
+        )
         db.session.add(new_article)
         db.session.commit()  # Commit to get the article ID
 
@@ -38,7 +44,7 @@ def create_article():
         response = {
             'success': True,
             'message': 'Article created successfully',
-            'data': article_json(new_article)
+            'data': new_article.json()
         }
         return jsonify(response), 201
 
@@ -57,14 +63,7 @@ def get_user_articles():
     user_id = get_jwt_identity()
     # make articles order by id desc
     articles = Article.query.filter_by(user_id=user_id).order_by(Article.id.desc()).all()
-    articles_list = [{
-        'id': article.id,
-        'title': article.title,
-        'word_count': article.word_count,
-        'created_at': article.created_at,
-        # 'paragraphs': {p.id: p.text for p in article.paragraphs},
-        # 'looking_words': [lw.word for lw in article.looking_words]
-    } for article in articles]
+    articles_list = [article.brief() for article in articles]
 
     return jsonify({'success': True, 'data': articles_list})
 
@@ -74,4 +73,4 @@ def get_user_articles():
 def get_article(article_id):
     article = Article.query.get_or_404(article_id)
 
-    return jsonify({'success': True, 'data': article_json(article)}), 200
+    return jsonify({'success': True, 'data': article.json()}), 200

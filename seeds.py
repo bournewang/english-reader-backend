@@ -3,7 +3,7 @@ from app import create_app
 from app.models.user import User
 from app.models.article import Article
 from app.models.paragraph import Paragraph
-from app.models.looking_word import LookingWord
+from app.models.unfamiliar_word import LookingWord
 from flask_bcrypt import Bcrypt
 
 # Initialize the Bcrypt object
@@ -17,31 +17,37 @@ def seed_users():
     db.session.commit()
 
 def seed_articles():
-    article1 = Article(user_id=1, title='Article 1', word_count=100)
-    article2 = Article(user_id=2, title='Article 2', word_count=150)
+    article1 = Article(user_id=1, title="Shark bites teenager's leg in attack at North Carolina beach", word_count=71, author="Jasmine Baehr", url="https://www.foxnews.com/us/shark-bites-teenagers-leg-attack-north-carolina-beach")
+    article2 = Article(user_id=2, title="Russia has seen two major terror attacks in just three months. Here’s what we know",  word_count=150, author="Kathleen Magramo and Jerome Taylor", url="https://edition.cnn.com/2024/06/24/europe/russia-dagestan-attacks-explainer-intl-hnk/index.html")
     db.session.add(article1)
     db.session.add(article2)
     db.session.commit()
 
-    paragraph1 = Paragraph(article_id=1, text='The Israeli military has said its forces violated protocol by strapping a wounded Palestinian man to the front of their vehicle during a raid in the West Bank city of Jenin.')
-    paragraph2 = Paragraph(article_id=1, text='The Israel Defense Forces confirmed the incident after it was captured on video and shared on social media. An IDF statement said the man was wounded in an exchange of fire during the raid, in which he was a suspect.')
-    paragraph3 = Paragraph(article_id=2, text="The injured man's family said that when they asked for an ambulance, the army took him, strapped him to the bonnet of their jeep and drove off.")
+    paragraph1 = Paragraph(article_id=1, text="Marine ecologist Mike Heithaus joins ‘America Reports’ to discuss three injured in two separate shark attacks off of Florida’s panhandle.")
+    paragraph2 = Paragraph(article_id=1, text='A teen is recovering from injuries to his right leg after a shark attack at a North Carolina beach on Sunday afternoon. ')
+    paragraph3 = Paragraph(article_id=1, text="North Topsail Beach Police Chief William Younginer told Fox News Digital that he raced to the scene in Onslow County, where 14-year-old Blayne Brown had been bitten.")
+    paragraph4 = Paragraph(article_id=2, text="Russia is reeling from another major terror attack, with at least 19 people killed and 25 injured in what appeared to be coordinated shootings at various places of worship in Russia’s southernmost Dagestan republic.")
+    paragraph5 = Paragraph(article_id=2, text="The attack is the second in the last three months after more than 130 people were killed at a concert hall near Moscow in a terrorist attack claimed by ISIS-K in March, and challenges President Vladimir Putin’s self-declared reputation as a leader able to guarantee order across the vast, turbulent country.")
+    paragraph6 = Paragraph(article_id=2, text="The uptick in violence comes as long-simmering ethnic tensions resurface, compounded both by drives to fill Russia’s military ranks as Putin’s war against Ukraine grinds on – and by the ongoing conflict in the Middle East.")
     db.session.add(paragraph1)
     db.session.add(paragraph2)
     db.session.add(paragraph3)
+    db.session.add(paragraph4)
+    db.session.add(paragraph5)
+    db.session.add(paragraph6)
     db.session.commit()
 
-def seed_looking_words():
-    looking_word1 = LookingWord(user_id=1, word='military', article_id=1, paragraph_id=1)
-    looking_word2 = LookingWord(user_id=2, word='ambulance', article_id=2, paragraph_id=3)
-    db.session.add(looking_word1)
-    db.session.add(looking_word2)
+def seed_unfamiliar_words():
+    unfamiliar_word1 = LookingWord(user_id=1, word='military', article_id=1, paragraph_id=1)
+    unfamiliar_word2 = LookingWord(user_id=2, word='ambulance', article_id=2, paragraph_id=3)
+    db.session.add(unfamiliar_word1)
+    db.session.add(unfamiliar_word2)
     db.session.commit()
 
 def seed_all():
     seed_users()
     seed_articles()
-    seed_looking_words()
+    seed_unfamiliar_words()
 
 if __name__ == "__main__":
     app = create_app()
