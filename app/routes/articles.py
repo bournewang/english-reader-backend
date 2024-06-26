@@ -3,6 +3,8 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..models.article import Article
 from ..models.paragraph import Paragraph
 from ..extensions import db
+from ..article_helper import article_json
+import time
 
 articles_bp = Blueprint('articles', __name__)
 
@@ -31,17 +33,12 @@ def create_article():
         db.session.flush()  # Ensure all paragraphs are added and IDs generated
         db.session.commit()  # Commit all changes
 
-        paragraph_mapping = {p.id: p.text for p in paragraph_objects}
+        # paragraph_mapping = {p.id: p.text for p in paragraph_objects}
 
         response = {
             'success': True,
             'message': 'Article created successfully',
-            'data': {
-                'id': new_article.id,
-                'title': new_article.title,
-                'word_count': new_article.word_count,
-                'paragraphs': paragraph_mapping
-            }
+            'data': article_json(new_article)
         }
         return jsonify(response), 201
 
@@ -65,8 +62,8 @@ def get_user_articles():
         'title': article.title,
         'word_count': article.word_count,
         'created_at': article.created_at,
-        'paragraphs': {p.id: p.text for p in article.paragraphs},
-        'looking_words': {lw.id: lw.word for lw in article.looking_words}
+        # 'paragraphs': {p.id: p.text for p in article.paragraphs},
+        # 'looking_words': [lw.word for lw in article.looking_words]
     } for article in articles]
 
     return jsonify({'success': True, 'data': articles_list})
@@ -76,13 +73,5 @@ def get_user_articles():
 @jwt_required()
 def get_article(article_id):
     article = Article.query.get_or_404(article_id)
-    # paragraphs = Paragraph.query.filter_by(article_id=article_id).all()
 
-    return jsonify({'success': True, 'data': {
-        'id': article.id,
-        'user_id': article.user_id,
-        'title': article.title,
-        'word_count': article.word_count,
-        'created_at': article.created_at,
-        'paragraphs': {p.id: p.text for p in article.paragraphs} 
-    }}), 200
+    return jsonify({'success': True, 'data': article_json(article)}), 200
