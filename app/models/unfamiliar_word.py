@@ -1,7 +1,7 @@
 from datetime import datetime
 from ..extensions import db
 
-class LookingWord(db.Model):
+class UnfamiliarWord(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     word = db.Column(db.String(100), nullable=False)

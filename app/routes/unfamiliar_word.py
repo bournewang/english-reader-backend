@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from ..models.unfamiliar_word import LookingWord
+from ..models.unfamiliar_word import UnfamiliarWord
 from ..extensions import db
 
 unfamiliar_word_bp = Blueprint('unfamiliar_word', __name__)
@@ -12,7 +12,7 @@ def add_unfamiliar_word():
     current_user_id = get_jwt_identity()
 
     # Check if the word already exists for the user in the specified article
-    existing_word = LookingWord.query.filter_by(
+    existing_word = UnfamiliarWord.query.filter_by(
         user_id=current_user_id,
         word=data['word'],
         article_id=data['article_id']
@@ -21,7 +21,7 @@ def add_unfamiliar_word():
     if existing_word:
         word = existing_word   
     else:
-        new_unfamiliar_word = LookingWord(
+        new_unfamiliar_word = UnfamiliarWord(
             user_id=current_user_id,
             word=data['word'],
             article_id=data['article_id'],
@@ -41,7 +41,11 @@ def add_unfamiliar_word():
                 'id': word.id,
                 'article_id': word.article_id,
                 'paragraph_id': word.paragraph_id,
-                'article': article.json()
+                'article': {
+                    'id': article.id,
+                    'title': article.title,
+                    'unfamiliar_words': [lw.word for lw in list(set(article.unfamiliar_words))]
+                }
             }
         }), 201
 
@@ -49,7 +53,7 @@ def add_unfamiliar_word():
 @jwt_required()
 def get_unfamiliar_word():
     current_user_id = get_jwt_identity()
-    unfamiliar_words = LookingWord.query.filter_by(user_id=current_user_id).order_by(LookingWord.created_at.desc()).all()
+    unfamiliar_words = UnfamiliarWord.query.filter_by(user_id=current_user_id).order_by(UnfamiliarWord.created_at.desc()).all()
     word_list = [{
         'word': lw.word,
         'article_id': lw.article_id,
@@ -66,7 +70,7 @@ def get_unfamiliar_word():
 @jwt_required()
 def get_unfamiliar_word_by_article_id(article_id):
     current_user_id = get_jwt_identity()
-    unfamiliar_words = LookingWord.query.filter_by(user_id=current_user_id, article_id=article_id).all()
+    unfamiliar_words = UnfamiliarWord.query.filter_by(user_id=current_user_id, article_id=article_id).all()
 
     word_list = [{
         'word': lw.word,

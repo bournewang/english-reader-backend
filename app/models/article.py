@@ -15,7 +15,7 @@ class Article(db.Model):
     site_icon = db.Column(db.String(500), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     paragraphs = db.relationship('Paragraph', backref='article', lazy=True)
-    unfamiliar_words = db.relationship('LookingWord', backref='article', lazy=True)
+    unfamiliar_words = db.relationship('UnfamiliarWord', backref='article', lazy=True)
 
     @staticmethod
     def extract_site(url):

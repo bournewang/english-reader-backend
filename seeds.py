@@ -3,7 +3,7 @@ from app import create_app
 from app.models.user import User
 from app.models.article import Article
 from app.models.paragraph import Paragraph
-from app.models.unfamiliar_word import LookingWord
+from app.models.unfamiliar_word import UnfamiliarWord
 from flask_bcrypt import Bcrypt
 
 # Initialize the Bcrypt object
@@ -38,8 +38,8 @@ def seed_articles():
     db.session.commit()
 
 def seed_unfamiliar_words():
-    unfamiliar_word1 = LookingWord(user_id=1, word='military', article_id=1, paragraph_id=1)
-    unfamiliar_word2 = LookingWord(user_id=2, word='ambulance', article_id=2, paragraph_id=3)
+    unfamiliar_word1 = UnfamiliarWord(user_id=1, word='military', article_id=1, paragraph_id=1)
+    unfamiliar_word2 = UnfamiliarWord(user_id=2, word='ambulance', article_id=2, paragraph_id=3)
     db.session.add(unfamiliar_word1)
     db.session.add(unfamiliar_word2)
     db.session.commit()
