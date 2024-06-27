@@ -1,6 +1,6 @@
 from flask import Flask
 from .extensions import db, migrate, jwt, bcrypt
-from .routes import auth_bp, articles_bp, unfamiliar_word_bp, stats_bp
+from .routes import auth_bp, articles_bp, unfamiliar_word_bp, stats_bp, order_bp
 from .helpers import check_if_token_is_revoked
 
 def create_app():
@@ -18,6 +18,7 @@ def create_app():
     app.register_blueprint(articles_bp, url_prefix='/articles')
     app.register_blueprint(unfamiliar_word_bp, url_prefix='/unfamiliar_word')
     app.register_blueprint(stats_bp, url_prefix='/stats')
+    app.register_blueprint(order_bp, url_prefix='/order')
 
     return app
 
