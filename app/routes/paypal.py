@@ -3,7 +3,6 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 import requests
 import os
 from dotenv import load_dotenv
-from ..utils import verify_webhook_signature
 
 paypal_bp = Blueprint('paypal', __name__)
 load_dotenv()
@@ -11,7 +10,7 @@ load_dotenv()
 PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
 PAYPAL_SECRET = os.getenv('PAYPAL_SECRET')
 PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com'  # Use sandbox for testing
-
+PAYPAL_WEBHOOK_ID = os.getenv('PAYPAL_WEBHOOK_ID')
 # Simulated database
 subscriptions = {}
 
@@ -86,32 +85,52 @@ def create_subscription():
     return jsonify(response.json())
 
 
+def verify_webhook_signature(headers, body):
+    response = requests.post(
+        f'{PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature',
+        headers={
+            'Content-Type': 'application/json',
+            'Authorization': f'Basic {PAYPAL_CLIENT_ID}:{PAYPAL_SECRET}'
+        },
+        json={
+            'auth_algo': headers.get('Paypal-Auth-Algo'),
+            'cert_url': headers.get('Paypal-Cert-Url'),
+            'transmission_id': headers.get('Paypal-Transmission-Id'),
+            'transmission_sig': headers.get('Paypal-Transmission-Sig'),
+            'transmission_time': headers.get('Paypal-Transmission-Time'),
+            'webhook_id': PAYPAL_WEBHOOK_ID,
+            'webhook_event': body
+        }
+    )
+    verification_status = response.json().get('verification_status')
+    return verification_status == 'SUCCESS'
+
+
 @paypal_bp.route('/webhook', methods=['POST'])
 def webhook():
-    event = request.json
-    transmission_id = request.headers.get('PayPal-Transmission-Id')
-    timestamp = request.headers.get('PayPal-Transmission-Time')
-    webhook_id = 'YOUR_WEBHOOK_ID'  # Replace with your webhook ID
-    actual_signature = request.headers.get('PayPal-Transmission-Sig')
-    webhook_signature = 'YOUR_WEBHOOK_SIGNATURE'  # Replace with your webhook signature
-    cert_url = request.headers.get('PayPal-Cert-Url')
-    auth_algo = request.headers.get('PayPal-Auth-Algo')
+    try:
+        headers = request.headers
+        body = request.json
 
-    event_body = request.data.decode('utf-8')
+        # Verify the webhook signature
+        if not verify_webhook_signature(headers, body):
+            return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
 
-    if not verify_webhook_signature(auth_algo, cert_url, transmission_id, timestamp, webhook_id, event_body, actual_signature, webhook_signature):
-        return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
+        # Process the event
+        event_type = body['event_type']
+        resource = body['resource']
+        if event_type == 'BILLING.SUBSCRIPTION.CREATED':
+            subscription_id = resource['id']
+            # Handle subscription creation
+        elif event_type == 'BILLING.SUBSCRIPTION.ACTIVATED':
+            subscription_id = resource['id']
+            # Handle subscription activation
+        elif event_type == 'BILLING.SUBSCRIPTION.CANCELLED':
+            subscription_id = resource['id']
+            # Handle subscription cancellation
+        # Handle other events as needed
 
-    # Handle the event
-    if event['event_type'] == 'BILLING.SUBSCRIPTION.CREATED':
-        subscription_id = event['resource']['id']
-        # Handle the subscription creation event
-    elif event['event_type'] == 'BILLING.SUBSCRIPTION.ACTIVATED':
-        subscription_id = event['resource']['id']
-        # Handle the subscription activation event
-    elif event['event_type'] == 'BILLING.SUBSCRIPTION.CANCELLED':
-        subscription_id = event['resource']['id']
-        # Handle the subscription cancellation event
-    # Handle other events...
-
-    return jsonify({'status': 'success'}), 200
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        print(f"Error processing webhook: {e}")
+        return jsonify({'status': 'failure', 'message': 'Internal server error'}), 500
