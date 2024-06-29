@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import calendar
 
 blacklist = set()
@@ -33,3 +33,5 @@ def calculate_new_expiry_date(current_expiry, interval_unit, interval_count):
         new_expiry_date = add_years(current_expiry, interval_count)
     else:
         raise ValueError("Unsupported interval unit")
+
+    return new_expiry_date
