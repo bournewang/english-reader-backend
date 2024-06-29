@@ -2,8 +2,6 @@ from datetime import datetime
 from app.extensions import db
 
 class Subscription(db.Model):
-    # id = db.Column(db.Integer, primary_key=True)
-    # subscription_id = db.Column(db.String(100), nullable=False, unique=True)
     id = db.Column(db.String(100), nullable=False, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     plan_id = db.Column(db.String(100), db.ForeignKey('plan.id'), nullable=False)
@@ -14,7 +12,7 @@ class Subscription(db.Model):
 
     def info(self):        
         return {
-            'subscription_id': self.subscription_id,
+            'id': self.id,
             'user_id': self.user_id,
             'plan_id': self.plan_id,
             'plan_name': self.plan_name,
@@ -22,6 +20,3 @@ class Subscription(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
-
-    def __repr__(self):
-        return f'<Subscription {self.subscription_id}>'
