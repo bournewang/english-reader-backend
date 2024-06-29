@@ -94,6 +94,8 @@ def create_subscription():
     data = request.json
     user_id = get_jwt_identity()
     plan_id = data['plan_id']
+    # fetch plan from database
+    plan = Plan.find_by_plan_id(plan_id)
     
     subscription_id = str(uuid.uuid4())
     subscriptions[subscription_id] = {'user_id': user_id, 'status': 'pending'}
@@ -128,6 +130,7 @@ def create_subscription():
             subscription_id=subscription_id,
             user_id=user_id,
             plan_id=plan_id,
+            plan_name=plan.name,
             status='PENDING'
         )
         db.session.add(subscription)
@@ -138,6 +141,96 @@ def create_subscription():
         logger.error(f"Failed to create subscription: {response_data}")
         return jsonify({'error': response_data}), response.status_code
 
+@paypal_bp.route('/subscriptions', methods=['GET'])
+@jwt_required()
+def get_subscriptions():
+    user_id = get_jwt_identity()
+    subscriptions = Subscription.query.filter_by(user_id=user_id).all()
+    subscriptions_data = [{
+        'subscription_id': subscription.subscription_id,
+        'plan_id': subscription.plan_id,
+        'plan_name': subscription.plan_name,
+        'status': subscription.status,
+        'created_at': subscription.created_at,
+        'updated_at': subscription.updated_at
+    } for subscription in subscriptions]
+    return jsonify(subscriptions=subscriptions_data), 200
+
+@paypal_bp.route('/subscriptions/<string:subscription_id>/suspend', methods=['POST'])
+@jwt_required()
+def suspend_subscription(subscription_id):
+    user_id = get_jwt_identity()
+    subscription = Subscription.find_by_subscription_id(subscription_id)
+    if not subscription:
+        return jsonify({'error': 'Subscription not found'}), 404
+
+    token = get_paypal_token()
+    response = requests.post(
+        f'{PAYPAL_API_BASE}/v1/billing/subscriptions/{subscription_id}/suspend',
+        headers={
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {token}'
+        },
+        json={'reason': 'User requested suspension'}
+    )
+
+    if response.status_code == 204:
+        subscription.status = 'SUSPENDED'
+        db.session.commit()
+        return jsonify({'status': 'success'}), 200
+    else:
+        return jsonify({'error': 'Failed to suspend subscription'}), response.status_code
+
+@paypal_bp.route('/subscriptions/<string:subscription_id>/cancel', methods=['POST'])
+@jwt_required()
+def cancel_subscription(subscription_id):
+    user_id = get_jwt_identity()
+    subscription = Subscription.find_by_subscription_id(subscription_id)
+    if not subscription:
+        return jsonify({'error': 'Subscription not found'}), 404
+
+    token = get_paypal_token()
+    response = requests.post(
+        f'{PAYPAL_API_BASE}/v1/billing/subscriptions/{subscription_id}/cancel',
+        headers={
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {token}'
+        },
+        json={'reason': 'User requested cancellation'}
+    )
+
+    if response.status_code == 204:
+        subscription.status = 'CANCELLED'
+        db.session.commit()
+        return jsonify({'status': 'success'}), 200
+    else:
+        return jsonify({'error': 'Failed to cancel subscription'}), response.status_code
+
+@paypal_bp.route('/subscriptions/<string:subscription_id>/activate', methods=['POST'])
+@jwt_required()
+def activate_subscription(subscription_id):
+    user_id = get_jwt_identity()
+    subscription = Subscription.find_by_subscription_id(subscription_id)
+    if not subscription:
+        return jsonify({'error': 'Subscription not found'}), 404
+
+    token = get_paypal_token()
+    response = requests.post(
+        f'{PAYPAL_API_BASE}/v1/billing/subscriptions/{subscription_id}/activate',
+        headers={
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {token}'
+        },
+        json={'reason': 'User requested reactivation'}
+    )
+
+    if response.status_code == 204:
+        subscription.status = 'ACTIVE'
+        db.session.commit()
+        return jsonify({'status': 'success'}), 200
+    else:
+        return jsonify({'error': 'Failed to activate subscription'}), response.status_code
+        
 def verify_webhook_signature(headers, body):
     response = requests.post(
         f'{PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature',

@@ -13,3 +13,10 @@ class Plan(db.Model):
     interval_count = db.Column(db.Integer, nullable=False)
     value = db.Column(db.String(50), nullable=False)
     currency = db.Column(db.String(50), nullable=False)
+
+    @classmethod
+    def find_by_plan_id(cls, plan_id):
+        return cls.query.filter_by(plan_id=plan_id).first()
+
+    def __repr__(self):
+        return f'<Plan {self.plan_id}>'

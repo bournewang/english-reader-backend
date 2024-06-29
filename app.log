@@ -1,0 +1,529 @@
+2024-06-29 09:08:22,821 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:08:22,830 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:08:23,853 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:08:24,443 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:08:24,451 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:08:53,962 - app.routes.paypal - INFO - Received webhook event
+2024-06-29 09:08:53,963 - app.routes.paypal - DEBUG - Headers: Content-Type: application/json
+User-Agent: PostmanRuntime/7.39.0
+Accept: */*
+Postman-Token: 87a3fe51-29f0-4ad9-a1a3-a80c7fd2c3eb
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 3299
+
+
+2024-06-29 09:08:53,963 - app.routes.paypal - DEBUG - Body: {'id': 'WH-19973937YW279670F-02S63370HL636500Y', 'create_time': '2016-04-28T11:29:31Z', 'resource_type': 'Agreement', 'event_type': 'BILLING.SUBSCRIPTION.CREATED', 'summary': 'A billing subscription was created', 'resource': {'agreement_details': {'outstanding_balance': {'value': '0.00'}, 'num_cycles_remaining': '5', 'num_cycles_completed': '0', 'final_payment_due_date': '2017-11-30T10:00:00Z', 'failed_payment_count': '0'}, 'description': 'desc', 'links': [{'href': 'https://api.paypal.com/v1/payments/billing-agreements/I-PE7JWXKGVN0R', 'rel': 'self', 'method': 'GET'}], 'id': 'I-PE7JWXKGVN0R', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}, 'state': 'Pending', 'plan': {'curr_code': 'USD', 'links': [], 'payment_definitions': [{'type': 'TRIAL', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '5.00'}, 'cycles': '5', 'charge_models': [{'type': 'TAX', 'amount': {'value': '1.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}, {'type': 'REGULAR', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '10.00'}, 'cycles': '15', 'charge_models': [{'type': 'TAX', 'amount': {'value': '2.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}], 'merchant_preferences': {'setup_fee': {'value': '0.00'}, 'auto_bill_amount': 'YES', 'max_fail_attempts': '21'}}, 'payer': {'payment_method': 'paypal', 'status': 'verified', 'payer_info': {'email': 'coolbuyer@example.com', 'first_name': 'Cool', 'last_name': 'Buyer', 'payer_id': 'XLHKRXRA4H7QY', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}}}, 'start_date': '2016-04-30T07:00:00Z'}, 'links': [{'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y', 'rel': 'self', 'method': 'GET', 'encType': 'application/json'}, {'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y/resend', 'rel': 'resend', 'method': 'POST', 'encType': 'application/json'}], 'event_version': '1.0'}
+2024-06-29 09:08:53,981 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 09:08:54,638 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/notifications/verify-webhook-signature HTTP/11" 401 87
+2024-06-29 09:08:54,640 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:08:54] "[31m[1mPOST /paypal/webhook HTTP/1.1[0m" 400 -
+2024-06-29 09:10:36,665 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:10:36] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 09:11:03,098 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:11:03] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 09:15:32,358 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:15:32] "[31m[1mPOST /auth/login HTTP/1.1[0m" 401 -
+2024-06-29 09:16:43,975 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 09:16:43,975 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 09:16:43,976 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:16:44,326 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:16:44,338 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:17:00,568 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:17:00] "POST /auth/login HTTP/1.1" 200 -
+2024-06-29 09:17:00,682 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:17:00] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 09:24:34,076 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:24:34] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 09:24:35,110 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:24:35] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 09:34:09,969 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:34:09] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 09:34:11,017 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:34:11] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 09:36:29,677 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:29,851 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:30,393 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:30,403 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:36:32,453 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:32,584 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:32,928 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:32,935 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:36:33,969 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:34,110 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:34,494 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:34,502 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:36:38,614 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:38,711 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:39,057 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:39,065 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:36:40,095 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:40,241 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:40,622 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:40,631 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:36:47,781 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:36:47,916 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:36:48,340 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:36:48,362 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:43:55,200 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:43:55,346 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:43:55,853 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:43:55,862 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:44:01,973 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:44:02,092 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:44:02,555 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:44:02,566 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:44:03,592 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:44:03,699 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:44:04,048 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:44:04,055 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:44:05,083 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:44:05,222 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:44:05,626 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:44:05,635 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:45:00,657 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:45:00,781 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:45:01,297 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:45:01,305 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:45:06,412 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:45:06,565 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:45:07,044 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:45:07,051 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:45:38,641 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 09:45:38,641 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 09:45:38,642 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:45:38,986 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:45:38,996 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 09:45:45,660 - app.routes.paypal - INFO - Received webhook event
+2024-06-29 09:45:45,661 - app.routes.paypal - DEBUG - Headers: Content-Type: application/json
+User-Agent: PostmanRuntime/7.39.0
+Accept: */*
+Postman-Token: 29aedd5e-fc25-4961-963a-2029e9c08e14
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 3299
+
+
+2024-06-29 09:45:45,661 - app.routes.paypal - DEBUG - Body: {'id': 'WH-19973937YW279670F-02S63370HL636500Y', 'create_time': '2016-04-28T11:29:31Z', 'resource_type': 'Agreement', 'event_type': 'BILLING.SUBSCRIPTION.CREATED', 'summary': 'A billing subscription was created', 'resource': {'agreement_details': {'outstanding_balance': {'value': '0.00'}, 'num_cycles_remaining': '5', 'num_cycles_completed': '0', 'final_payment_due_date': '2017-11-30T10:00:00Z', 'failed_payment_count': '0'}, 'description': 'desc', 'links': [{'href': 'https://api.paypal.com/v1/payments/billing-agreements/I-PE7JWXKGVN0R', 'rel': 'self', 'method': 'GET'}], 'id': 'I-PE7JWXKGVN0R', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}, 'state': 'Pending', 'plan': {'curr_code': 'USD', 'links': [], 'payment_definitions': [{'type': 'TRIAL', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '5.00'}, 'cycles': '5', 'charge_models': [{'type': 'TAX', 'amount': {'value': '1.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}, {'type': 'REGULAR', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '10.00'}, 'cycles': '15', 'charge_models': [{'type': 'TAX', 'amount': {'value': '2.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}], 'merchant_preferences': {'setup_fee': {'value': '0.00'}, 'auto_bill_amount': 'YES', 'max_fail_attempts': '21'}}, 'payer': {'payment_method': 'paypal', 'status': 'verified', 'payer_info': {'email': 'coolbuyer@example.com', 'first_name': 'Cool', 'last_name': 'Buyer', 'payer_id': 'XLHKRXRA4H7QY', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}}}, 'start_date': '2016-04-30T07:00:00Z'}, 'links': [{'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y', 'rel': 'self', 'method': 'GET', 'encType': 'application/json'}, {'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y/resend', 'rel': 'resend', 'method': 'POST', 'encType': 'application/json'}], 'event_version': '1.0'}
+2024-06-29 09:45:45,732 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 09:45:46,777 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/notifications/verify-webhook-signature HTTP/11" 401 87
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - Webhook verification request: 
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - https://api-m.sandbox.paypal.com/v1/notifications/verify-webhook-signature
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - {'Content-Type': 'application/json', 'Authorization': 'Basic AQZZSON8LtE-2MJ_hyudXc74qWqWNMV_URprPtlIA_0ccbeHLco2dfApgncrVF7kGsMPxnuK13XSaOBS:ENyEND9zNrLl_Ozx-5QsndzYjKWazt6xqFBKlUB3iYLWNJMfIEUHL36ZUfVVbWkS0CEtdhSwidv_-AnO'}
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - {'auth_algo': None, 'cert_url': None, 'transmission_id': None, 'transmission_sig': None, 'transmission_time': None, 'webhook_id': '09V10385DT039272Y', 'webhook_event': {'id': 'WH-19973937YW279670F-02S63370HL636500Y', 'create_time': '2016-04-28T11:29:31Z', 'resource_type': 'Agreement', 'event_type': 'BILLING.SUBSCRIPTION.CREATED', 'summary': 'A billing subscription was created', 'resource': {'agreement_details': {'outstanding_balance': {'value': '0.00'}, 'num_cycles_remaining': '5', 'num_cycles_completed': '0', 'final_payment_due_date': '2017-11-30T10:00:00Z', 'failed_payment_count': '0'}, 'description': 'desc', 'links': [{'href': 'https://api.paypal.com/v1/payments/billing-agreements/I-PE7JWXKGVN0R', 'rel': 'self', 'method': 'GET'}], 'id': 'I-PE7JWXKGVN0R', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}, 'state': 'Pending', 'plan': {'curr_code': 'USD', 'links': [], 'payment_definitions': [{'type': 'TRIAL', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '5.00'}, 'cycles': '5', 'charge_models': [{'type': 'TAX', 'amount': {'value': '1.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}, {'type': 'REGULAR', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '10.00'}, 'cycles': '15', 'charge_models': [{'type': 'TAX', 'amount': {'value': '2.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}], 'merchant_preferences': {'setup_fee': {'value': '0.00'}, 'auto_bill_amount': 'YES', 'max_fail_attempts': '21'}}, 'payer': {'payment_method': 'paypal', 'status': 'verified', 'payer_info': {'email': 'coolbuyer@example.com', 'first_name': 'Cool', 'last_name': 'Buyer', 'payer_id': 'XLHKRXRA4H7QY', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}}}, 'start_date': '2016-04-30T07:00:00Z'}, 'links': [{'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y', 'rel': 'self', 'method': 'GET', 'encType': 'application/json'}, {'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y/resend', 'rel': 'resend', 'method': 'POST', 'encType': 'application/json'}], 'event_version': '1.0'}}
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - Webhook verification response: {'error': 'error_in_reading_cert', 'error_description': 'Unable to read x509 certificate'}
+2024-06-29 09:45:46,778 - app.routes.paypal - DEBUG - {'error': 'error_in_reading_cert', 'error_description': 'Unable to read x509 certificate'}
+2024-06-29 09:45:46,779 - app.routes.paypal - DEBUG - Verification status: None
+2024-06-29 09:45:46,779 - app.routes.paypal - DEBUG - verify webhook signature failed
+2024-06-29 09:45:46,780 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 09:45:46] "[31m[1mPOST /paypal/webhook HTTP/1.1[0m" 400 -
+2024-06-29 09:46:06,440 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 09:46:06,681 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 09:46:07,303 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 09:46:07,311 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:05:36,587 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 10:05:36,588 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 10:05:36,588 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:05:36,954 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:05:36,963 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:06:08,524 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:06:08,683 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:06:09,187 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:06:09,195 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:07:47,252 - app.routes.paypal - INFO - Received webhook event
+2024-06-29 10:07:47,252 - app.routes.paypal - DEBUG - Headers: Content-Type: application/json
+User-Agent: PostmanRuntime/7.39.0
+Accept: */*
+Postman-Token: bf13f466-e6b3-4ebd-85e0-a0f8e01664e2
+Host: 127.0.0.1:5000
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 3299
+
+
+2024-06-29 10:07:47,253 - app.routes.paypal - DEBUG - Body: {'id': 'WH-19973937YW279670F-02S63370HL636500Y', 'create_time': '2016-04-28T11:29:31Z', 'resource_type': 'Agreement', 'event_type': 'BILLING.SUBSCRIPTION.CREATED', 'summary': 'A billing subscription was created', 'resource': {'agreement_details': {'outstanding_balance': {'value': '0.00'}, 'num_cycles_remaining': '5', 'num_cycles_completed': '0', 'final_payment_due_date': '2017-11-30T10:00:00Z', 'failed_payment_count': '0'}, 'description': 'desc', 'links': [{'href': 'https://api.paypal.com/v1/payments/billing-agreements/I-PE7JWXKGVN0R', 'rel': 'self', 'method': 'GET'}], 'id': 'I-PE7JWXKGVN0R', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}, 'state': 'Pending', 'plan': {'curr_code': 'USD', 'links': [], 'payment_definitions': [{'type': 'TRIAL', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '5.00'}, 'cycles': '5', 'charge_models': [{'type': 'TAX', 'amount': {'value': '1.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}, {'type': 'REGULAR', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '10.00'}, 'cycles': '15', 'charge_models': [{'type': 'TAX', 'amount': {'value': '2.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}], 'merchant_preferences': {'setup_fee': {'value': '0.00'}, 'auto_bill_amount': 'YES', 'max_fail_attempts': '21'}}, 'payer': {'payment_method': 'paypal', 'status': 'verified', 'payer_info': {'email': 'coolbuyer@example.com', 'first_name': 'Cool', 'last_name': 'Buyer', 'payer_id': 'XLHKRXRA4H7QY', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}}}, 'start_date': '2016-04-30T07:00:00Z'}, 'links': [{'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y', 'rel': 'self', 'method': 'GET', 'encType': 'application/json'}, {'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y/resend', 'rel': 'resend', 'method': 'POST', 'encType': 'application/json'}], 'event_version': '1.0'}
+2024-06-29 10:07:47,390 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:07:48,068 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/notifications/verify-webhook-signature HTTP/11" 401 87
+2024-06-29 10:07:48,069 - app.routes.paypal - DEBUG - Webhook verification request: 
+2024-06-29 10:07:48,069 - app.routes.paypal - DEBUG - https://api-m.sandbox.paypal.com/v1/notifications/verify-webhook-signature
+2024-06-29 10:07:48,069 - app.routes.paypal - DEBUG - {'Content-Type': 'application/json', 'Authorization': 'Basic AQZZSON8LtE-2MJ_hyudXc74qWqWNMV_URprPtlIA_0ccbeHLco2dfApgncrVF7kGsMPxnuK13XSaOBS:ENyEND9zNrLl_Ozx-5QsndzYjKWazt6xqFBKlUB3iYLWNJMfIEUHL36ZUfVVbWkS0CEtdhSwidv_-AnO'}
+2024-06-29 10:07:48,069 - app.routes.paypal - DEBUG - {'auth_algo': None, 'cert_url': None, 'transmission_id': None, 'transmission_sig': None, 'transmission_time': None, 'webhook_id': '09V10385DT039272Y', 'webhook_event': {'id': 'WH-19973937YW279670F-02S63370HL636500Y', 'create_time': '2016-04-28T11:29:31Z', 'resource_type': 'Agreement', 'event_type': 'BILLING.SUBSCRIPTION.CREATED', 'summary': 'A billing subscription was created', 'resource': {'agreement_details': {'outstanding_balance': {'value': '0.00'}, 'num_cycles_remaining': '5', 'num_cycles_completed': '0', 'final_payment_due_date': '2017-11-30T10:00:00Z', 'failed_payment_count': '0'}, 'description': 'desc', 'links': [{'href': 'https://api.paypal.com/v1/payments/billing-agreements/I-PE7JWXKGVN0R', 'rel': 'self', 'method': 'GET'}], 'id': 'I-PE7JWXKGVN0R', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}, 'state': 'Pending', 'plan': {'curr_code': 'USD', 'links': [], 'payment_definitions': [{'type': 'TRIAL', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '5.00'}, 'cycles': '5', 'charge_models': [{'type': 'TAX', 'amount': {'value': '1.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}, {'type': 'REGULAR', 'frequency': 'Month', 'frequency_interval': '1', 'amount': {'value': '10.00'}, 'cycles': '15', 'charge_models': [{'type': 'TAX', 'amount': {'value': '2.00'}}, {'type': 'SHIPPING', 'amount': {'value': '1.00'}}]}], 'merchant_preferences': {'setup_fee': {'value': '0.00'}, 'auto_bill_amount': 'YES', 'max_fail_attempts': '21'}}, 'payer': {'payment_method': 'paypal', 'status': 'verified', 'payer_info': {'email': 'coolbuyer@example.com', 'first_name': 'Cool', 'last_name': 'Buyer', 'payer_id': 'XLHKRXRA4H7QY', 'shipping_address': {'recipient_name': 'Cool Buyer', 'line1': '3rd st', 'line2': 'cool', 'city': 'San Jose', 'state': 'CA', 'postal_code': '95112', 'country_code': 'US'}}}, 'start_date': '2016-04-30T07:00:00Z'}, 'links': [{'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y', 'rel': 'self', 'method': 'GET', 'encType': 'application/json'}, {'href': 'https://api.paypal.com/v1/notifications/webhooks-events/WH-19973937YW279670F-02S63370HL636500Y/resend', 'rel': 'resend', 'method': 'POST', 'encType': 'application/json'}], 'event_version': '1.0'}}
+2024-06-29 10:07:48,070 - app.routes.paypal - DEBUG - Webhook verification response: {'error': 'error_in_reading_cert', 'error_description': 'Unable to read x509 certificate'}
+2024-06-29 10:07:48,070 - app.routes.paypal - DEBUG - {'error': 'error_in_reading_cert', 'error_description': 'Unable to read x509 certificate'}
+2024-06-29 10:07:48,070 - app.routes.paypal - DEBUG - Verification status: None
+2024-06-29 10:07:48,070 - app.routes.paypal - DEBUG - verify webhook signature failed
+2024-06-29 10:07:48,072 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:07:48] "[31m[1mPOST /paypal/webhook HTTP/1.1[0m" 400 -
+2024-06-29 10:07:56,847 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:07:56] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 10:08:01,173 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:08:01] "GET /plan/list HTTP/1.1" 200 -
+2024-06-29 10:08:47,668 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:08:47] "OPTIONS /paypal/create-subscription HTTP/1.1" 200 -
+2024-06-29 10:08:47,739 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:08:48,433 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:08:48,450 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:08:48] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 500 -
+2024-06-29 10:12:49,488 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:12:49,648 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:12:50,165 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:12:50,173 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:13:01,404 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:13:01,514 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:01,966 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:13:01,973 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:13:09,111 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:13:09,195 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:09,537 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:13:09,544 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:13:10,572 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:13:10,653 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:11,015 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:13:11,024 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:13:24,293 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:13:24,461 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:24,954 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:13:24,963 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:13:35,160 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/__init__.py', reloading
+2024-06-29 10:13:35,337 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:55,347 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 10:13:55,348 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 10:13:55,348 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:13:55,696 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:13:55,704 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:19:09,706 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:09] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:19:10,392 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:10] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:19:10,592 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:10] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:19:10,803 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:10] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:19:21,589 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:21] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:19:26,641 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:19:26] "[35m[1mGET /paypal/plans HTTP/1.1[0m" 500 -
+2024-06-29 10:20:14,398 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:20:14,601 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:20:15,166 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:20:15,174 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:20:16,676 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:20:16] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:20:20,231 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:20:20] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:20:39,274 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:20:40,231 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:20:40,244 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:20:40] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 500 -
+2024-06-29 10:22:47,129 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:22:47,354 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:22:47,839 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:22:47,847 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:22:53,985 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:22:56,046 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:22:56,056 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:22:57,694 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:22:57,696 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:22:57] "POST /paypal/create-subscription HTTP/1.1" 200 -
+2024-06-29 10:23:50,965 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:23:51,099 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:23:51,602 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:23:51,614 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:24:09,963 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:24:10,094 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:24:10,565 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:24:10,576 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:24:27,587 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:24:27] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:24:28,827 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:24:28] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:24:30,336 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:24:30] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:24:33,468 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:24:34,219 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:24:34,228 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:24:35,648 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:24:35,649 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:24:35,650 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-X7VJ322TJH25', 'create_time': '2024-06-29T02:24:35Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-3PK83512W9902763S', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-X7VJ322TJH25', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-X7VJ322TJH25', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:24:35,651 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:24:35] "POST /paypal/create-subscription HTTP/1.1" 200 -
+2024-06-29 10:28:40,299 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:28:40,414 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:28:40,881 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:28:40,892 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:28:41,920 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:28:42,031 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:28:42,423 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:28:42,431 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:28:53,767 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:28:53] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:28:56,126 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:28:56] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:29:07,127 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:29:07,886 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:29:07,894 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:29:09,445 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:29:09,446 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:29:09,446 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-SXDWKTDSATMT', 'create_time': '2024-06-29T02:29:09Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-8PT41359WK296120C', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-SXDWKTDSATMT', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-SXDWKTDSATMT', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:29:09,448 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:29:09] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 10:32:49,652 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:32:49] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:34:21,828 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:34:21] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:36:03,131 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:03] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:36:04,095 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:04] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:36:05,034 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:05] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:36:09,323 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:36:10,060 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:36:10,067 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:36:11,186 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:36:11,187 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:36:11,188 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-RWJSKLR7X3X8', 'create_time': '2024-06-29T02:36:10Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-7D826944RE406424H', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-RWJSKLR7X3X8', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-RWJSKLR7X3X8', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:36:11,189 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:11] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 10:36:12,334 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:12] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:36:22,063 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:22] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:36:29,817 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:29] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:36:30,206 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:30] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:36:34,501 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:36:44,781 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:36:44,789 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:36:45,900 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:36:45,901 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:36:45,902 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-Y7W2DK3FRHL4', 'create_time': '2024-06-29T02:36:45Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-8M720903859198805', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-Y7W2DK3FRHL4', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-Y7W2DK3FRHL4', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:36:45,903 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:45] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 10:36:56,214 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:36:56] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:37:26,360 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:26] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:37:26,755 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:26] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:37:28,055 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:28] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:37:28,639 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:28] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:37:33,157 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:33] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:37:37,514 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:37:38,144 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:37:38,151 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:37:39,589 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:37:39,590 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:37:39,590 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-L3PD9KE67K6T', 'create_time': '2024-06-29T02:37:39Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-5E061977HL372953R', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-L3PD9KE67K6T', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-L3PD9KE67K6T', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:37:39,592 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:37:39] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 10:43:55,653 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:43:55] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:44:00,274 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:44:00] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 10:44:02,047 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:44:02] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:44:22,850 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:44:22] "GET /unfamiliar_word/get HTTP/1.1" 200 -
+2024-06-29 10:44:23,591 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:44:23] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:44:56,684 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:44:56,799 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:44:57,292 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:44:57,304 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:45:00,371 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:45:00,460 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:45:00,796 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:45:00,804 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:45:06,921 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:45:07,573 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:45:07,586 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:45:07] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 500 -
+2024-06-29 10:47:13,623 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:13] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:14,556 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:14] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:16,046 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:16] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:16,810 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:16] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:25,726 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:25] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:27,094 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:27] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:33,166 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:33] "GET /unfamiliar_word/get HTTP/1.1" 200 -
+2024-06-29 10:47:33,758 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:33] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 10:47:36,770 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:47:37,415 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 10:47:37,423 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 10:47:38,926 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 10:47:38,927 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 10:47:38,927 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-7WD70G4XLNXL', 'create_time': '2024-06-29T02:47:38Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-8NL45393YH9561350', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-7WD70G4XLNXL', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-7WD70G4XLNXL', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 10:47:38,929 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 10:47:38] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 10:51:25,956 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 10:51:26,180 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:51:26,692 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:51:26,698 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:51:31,788 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 10:51:31,944 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:51:32,447 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:51:32,456 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:52:07,087 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:52:07,288 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:52:07,826 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:52:07,832 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:52:51,636 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:52:51,751 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:52:52,279 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:52:52,288 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:53:09,571 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:53:09,732 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:53:10,202 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:53:10,215 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 10:53:11,242 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 10:53:11,406 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 10:53:11,841 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 10:53:11,849 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:00:50,698 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:00:50,888 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:00:51,489 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:00:51,497 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:00:56,622 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:00:56,725 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:00:57,241 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:00:57,250 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:01:08,454 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:01:08,612 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:01:09,107 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:01:09,115 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:01:18,294 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:01:18,403 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:01:18,840 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:01:18,847 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:01:19,878 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:01:19,970 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:01:20,304 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:01:20,310 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:01:45,791 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:01:45,905 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:01:46,368 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:01:46,376 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:01:47,404 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:01:47,585 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:01:47,949 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:01:47,956 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:03:24,846 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 11:03:24,954 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:03:25,472 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:03:25,481 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:03:26,516 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 11:03:26,630 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:03:26,992 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:03:27,000 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:03:58,619 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:03:58,736 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:03:59,241 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:03:59,250 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:04:00,282 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:04:00,376 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:04:00,706 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:04:00,713 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:05:03,993 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 11:05:04,087 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:05:04,581 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:05:04,591 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:05:08,677 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 11:05:08,759 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:05:09,082 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:05:09,089 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:05:10,118 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 11:05:10,200 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:05:10,529 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:05:10,538 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:05:13,597 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 11:05:13,821 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:05:14,245 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:05:14,251 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:31:28,417 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 11:31:28,417 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 11:31:28,417 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:31:28,785 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:31:28,795 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:32:26,617 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:32:26] "GET /unfamiliar_word/get HTTP/1.1" 200 -
+2024-06-29 11:32:27,254 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:32:27] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 11:32:32,820 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 11:32:33,925 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 11:32:33,935 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 11:32:35,301 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions HTTP/11" 201 457
+2024-06-29 11:32:35,302 - app.routes.paypal - DEBUG - request https://api-m.sandbox.paypal.com/v1/billing/subscriptions
+2024-06-29 11:32:35,302 - app.routes.paypal - DEBUG - {'status': 'APPROVAL_PENDING', 'id': 'I-NNKU8E3V15WT', 'create_time': '2024-06-29T03:32:34Z', 'links': [{'href': 'https://www.sandbox.paypal.com/webapps/billing/subscriptions?ba_token=BA-8391220770066970E', 'rel': 'approve', 'method': 'GET'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-NNKU8E3V15WT', 'rel': 'edit', 'method': 'PATCH'}, {'href': 'https://api-m.sandbox.paypal.com/v1/billing/subscriptions/I-NNKU8E3V15WT', 'rel': 'self', 'method': 'GET'}]}
+2024-06-29 11:32:35,324 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:32:35] "[35m[1mPOST /paypal/create-subscription HTTP/1.1[0m" 201 -
+2024-06-29 11:34:29,130 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:34:29,257 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:34:29,746 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:34:29,755 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:34:31,802 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:34:31,891 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:34:32,222 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:34:32,229 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:35:02,782 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:35:02,949 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:35:03,426 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:35:03,436 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:35:11,586 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:35:11,681 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:35:12,020 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:35:12,028 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:35:13,056 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:35:13,134 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:35:13,494 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:35:13,503 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:39:03,811 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:39:03,976 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:39:04,537 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:39:04,547 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:39:17,772 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:39:17,954 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:39:18,455 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:39:18,464 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:45:56,583 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/subscription.py', reloading
+2024-06-29 11:45:56,799 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:45:57,354 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:45:57,363 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:48:16,126 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:48:16,265 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:48:16,756 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:48:16,764 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:48:17,790 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:48:17,898 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:48:18,252 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:48:18,261 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:49:07,191 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:49:07,344 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:49:07,832 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:49:07,839 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:49:08,873 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:49:09,025 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:49:09,481 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:49:09,490 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:49:14,582 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:49:14,725 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:49:15,095 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:49:15,104 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:52:16,184 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:52:16] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 11:52:17,442 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:52:17] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 11:52:36,616 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:52:36] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 11:52:38,476 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 11:52:38] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 11:53:30,738 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 11:53:30,839 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:53:31,323 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:53:31,332 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:53:32,361 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 11:53:32,446 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:53:32,783 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:53:32,790 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:55:51,539 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/plan.py', reloading
+2024-06-29 11:55:51,668 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:55:52,192 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:55:52,201 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:55:56,288 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/plan.py', reloading
+2024-06-29 11:55:56,382 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:55:56,764 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:55:56,772 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:55:57,805 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/plan.py', reloading
+2024-06-29 11:55:57,886 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:55:58,214 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:55:58,222 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:56:05,388 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/plan.py', reloading
+2024-06-29 11:56:05,467 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:56:05,826 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:56:05,834 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:56:06,865 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/plan.py', reloading
+2024-06-29 11:56:06,977 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 11:56:07,367 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 11:56:07,375 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 11:56:25,730 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 11:56:25,915 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:02:04,407 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-06-29 12:02:04,408 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-06-29 12:02:04,408 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:02:04,754 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:02:04,762 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:02:41,675 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:02:41] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 12:02:42,602 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:02:42] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 12:02:45,450 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:02:46,821 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 12:02:46,830 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:02:48,120 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions/I-NNKU8E3V15WT/cancel HTTP/11" 204 0
+2024-06-29 12:02:48,135 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:02:48] "POST /paypal/subscriptions/I-NNKU8E3V15WT/cancel HTTP/1.1" 200 -
+2024-06-29 12:02:48,160 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:02:48] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 12:03:19,639 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:19] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 12:03:20,897 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:20] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 12:03:32,414 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:32] "[35m[1mGET /stats/get HTTP/1.1[0m" 201 -
+2024-06-29 12:03:33,817 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:33] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 12:03:40,781 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:41,681 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 12:03:41,688 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:42,785 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions/I-NNKU8E3V15WT/cancel HTTP/11" 422 481
+2024-06-29 12:03:42,787 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:42] "[31m[1mPOST /paypal/subscriptions/I-NNKU8E3V15WT/cancel HTTP/1.1[0m" 422 -
+2024-06-29 12:03:42,977 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:44,139 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 12:03:44,143 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:45,252 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions/I-NNKU8E3V15WT/cancel HTTP/11" 422 481
+2024-06-29 12:03:45,256 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:45] "[31m[1mPOST /paypal/subscriptions/I-NNKU8E3V15WT/cancel HTTP/1.1[0m" 422 -
+2024-06-29 12:03:53,729 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:54,329 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/oauth2/token HTTP/11" 200 None
+2024-06-29 12:03:54,335 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api-m.sandbox.paypal.com:443
+2024-06-29 12:03:55,088 - urllib3.connectionpool - DEBUG - https://api-m.sandbox.paypal.com:443 "POST /v1/billing/subscriptions/I-NNKU8E3V15WT/suspend HTTP/11" 422 469
+2024-06-29 12:03:55,091 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:55] "[31m[1mPOST /paypal/subscriptions/I-NNKU8E3V15WT/suspend HTTP/1.1[0m" 422 -
+2024-06-29 12:05:07,347 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:05:07] "GET /paypal/plans HTTP/1.1" 200 -
+2024-06-29 12:05:08,262 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:05:08] "GET /paypal/subscriptions HTTP/1.1" 200 -
