@@ -146,14 +146,7 @@ def create_subscription():
 def get_subscriptions():
     user_id = get_jwt_identity()
     subscriptions = Subscription.query.filter_by(user_id=user_id).all()
-    subscriptions_data = [{
-        'subscription_id': subscription.subscription_id,
-        'plan_id': subscription.plan_id,
-        'plan_name': subscription.plan_name,
-        'status': subscription.status,
-        'created_at': subscription.created_at,
-        'updated_at': subscription.updated_at
-    } for subscription in subscriptions]
+    subscriptions_data = [subscription.info() for subscription in subscriptions]
     return jsonify(subscriptions=subscriptions_data), 200
 
 @paypal_bp.route('/subscriptions/<string:subscription_id>/suspend', methods=['POST'])
@@ -177,7 +170,10 @@ def suspend_subscription(subscription_id):
     if response.status_code == 204:
         subscription.status = 'SUSPENDED'
         db.session.commit()
-        return jsonify({'status': 'success'}), 200
+
+        subscriptions = Subscription.query.filter_by(user_id=user_id).all()
+        subscriptions_data = [subscription.info() for subscription in subscriptions]        
+        return jsonify(subscriptions=subscriptions_data), 200
     else:
         return jsonify({'error': 'Failed to suspend subscription'}), response.status_code
 
@@ -202,7 +198,10 @@ def cancel_subscription(subscription_id):
     if response.status_code == 204:
         subscription.status = 'CANCELLED'
         db.session.commit()
-        return jsonify({'status': 'success'}), 200
+        
+        subscriptions = Subscription.query.filter_by(user_id=user_id).all()
+        subscriptions_data = [subscription.info() for subscription in subscriptions]        
+        return jsonify(subscriptions=subscriptions_data), 200
     else:
         return jsonify({'error': 'Failed to cancel subscription'}), response.status_code
 
@@ -227,7 +226,10 @@ def activate_subscription(subscription_id):
     if response.status_code == 204:
         subscription.status = 'ACTIVE'
         db.session.commit()
-        return jsonify({'status': 'success'}), 200
+        
+        subscriptions = Subscription.query.filter_by(user_id=user_id).all()
+        subscriptions_data = [subscription.info() for subscription in subscriptions]        
+        return jsonify(subscriptions=subscriptions_data), 200
     else:
         return jsonify({'error': 'Failed to activate subscription'}), response.status_code
         
