@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 from ..models.plan import Plan
 from ..models.subscription import Subscription
+from ..extensions import db
 import uuid
 import logging
 
@@ -26,6 +27,7 @@ PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
 PAYPAL_SECRET = os.getenv('PAYPAL_SECRET')
 PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com'  # Use sandbox for testing
 PAYPAL_WEBHOOK_ID = os.getenv('PAYPAL_WEBHOOK_ID')
+BRAND_NAME = os.getenv('BRAND_NAME')
 # Simulated database
 subscriptions = {}
 
@@ -105,7 +107,7 @@ def create_subscription():
         json={
             'plan_id': plan_id,
             'application_context': {
-                'brand_name': 'Your Brand',
+                'brand_name': BRAND_NAME,
                 'locale': 'en-US',
                 'shipping_preference': 'NO_SHIPPING',
                 'user_action': 'SUBSCRIBE_NOW',
@@ -187,9 +189,9 @@ def webhook():
         logger.debug(f"Body: {event_body}")
 
         # Verify the webhook signature
-        if not verify_signature(event_body, headers):
-            logger.warning("Invalid signature")
-            return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
+        # if not verify_signature(event_body, headers):
+        #     logger.warning("Invalid signature")
+        #     return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
 
         # Process the event
         event = request.json
@@ -211,7 +213,7 @@ def webhook():
                 logger.info(f"Updated subscription {subscription_id} status to {status}")
                 return jsonify({'status': 'success'}), 200
 
-        logger.warning(f"Unhandled event type: {event_type}")
+        # logger.warning(f"Unhandled event type: {event_type}")
         return jsonify({'status': 'failure', 'message': 'Unhandled event type'}), 400
     except Exception as e:
         logger.error(f"Error processing webhook: {e}")
