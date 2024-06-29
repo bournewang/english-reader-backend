@@ -114,7 +114,25 @@ def verify_webhook_signature(headers, body):
             'webhook_event': body
         }
     )
+    logger.debug(f"Webhook verification request: ")
+    logger.debug(f'{PAYPAL_API_BASE}/v1/notifications/verify-webhook-signature')
+    logger.debug({
+            'Content-Type': 'application/json',
+            'Authorization': f'Basic {PAYPAL_CLIENT_ID}:{PAYPAL_SECRET}'
+        })
+    logger.debug({
+            'auth_algo': headers.get('Paypal-Auth-Algo'),
+            'cert_url': headers.get('Paypal-Cert-Url'),
+            'transmission_id': headers.get('Paypal-Transmission-Id'),
+            'transmission_sig': headers.get('Paypal-Transmission-Sig'),
+            'transmission_time': headers.get('Paypal-Transmission-Time'),
+            'webhook_id': PAYPAL_WEBHOOK_ID,
+            'webhook_event': body
+        })
+    logger.debug(f"Webhook verification response: {response.json()}")
+    logger.debug(response.json())
     verification_status = response.json().get('verification_status')
+    logger.debug(f"Verification status: {verification_status}")
     return verification_status == 'SUCCESS'
 
 
@@ -130,6 +148,7 @@ def webhook():
 
         # Verify the webhook signature
         if not verify_webhook_signature(headers, body):
+            logger.debug("verify webhook signature failed")
             return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
 
         # Process the event
