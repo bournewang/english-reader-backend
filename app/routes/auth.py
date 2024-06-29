@@ -29,7 +29,7 @@ def login():
     user = User.query.filter_by(email=email).first()
     if user and user.verify_password(password):
         access_token = create_access_token(identity=user.id)
-        return jsonify(access_token=access_token), 200
+        return jsonify(access_token=access_token, user=user.info()), 200
     return jsonify({'message': 'Invalid credentials'}), 401
 
 # Protected route

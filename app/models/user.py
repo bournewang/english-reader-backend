@@ -23,3 +23,13 @@ class User(db.Model):
 
     def verify_password(self, password):
         return bcrypt.check_password_hash(self.password_hash, password)
+
+    def info(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'created_at': self.created_at,
+            'premium': self.premium,
+            'expires_at': self.expires_at,
+            'status': self.status
+        }
