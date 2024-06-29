@@ -3,6 +3,9 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 import requests
 import os
 from dotenv import load_dotenv
+from ..models.plan import Plan
+from ..models.subscription import Subscription
+import uuid
 import logging
 
 # Configure logging
@@ -65,6 +68,23 @@ def create_plan():
     )
     return jsonify(response.json())
 
+@paypal_bp.route('/plans', methods=['GET'])
+@jwt_required()
+def get_plans():
+    plans = Plan.query.all()
+    plan_list = [{
+        'product_id': plan.product_id,
+        'plan_id': plan.plan_id,
+        'name': plan.name,
+        'description': plan.description,
+        'interval_unit': plan.interval_unit,
+        'interval_count': plan.interval_count,
+        'value': plan.value,
+        'currency': plan.currency
+    } for plan in plans]
+    
+    return jsonify(plan_list)
+
 @paypal_bp.route('/create-subscription', methods=['POST'])
 @jwt_required()
 def create_subscription():
@@ -89,13 +109,32 @@ def create_subscription():
                 'locale': 'en-US',
                 'shipping_preference': 'NO_SHIPPING',
                 'user_action': 'SUBSCRIBE_NOW',
-                'return_url': f'https://api.englishreader.org/paypal/capture?subscription_id={subscription_id}',
-                'cancel_url': 'http://localhost:3000/cancel'
+                # 'return_url': f'https://api.englishreader.org/paypal/capture?subscription_id={subscription_id}',
+                # 'cancel_url': 'http://localhost:3000/cancel'
             }
         }
     )
-    return jsonify(response.json())
+    logger.debug(f"request {PAYPAL_API_BASE}/v1/billing/subscriptions")
+    logger.debug(response.json())
+    response_data = response.json()
+    if response.status_code == 201:
+        subscription_id = response_data['id']
+        approval_url = next(link['href'] for link in response_data['links'] if link['rel'] == 'approve')
 
+        # Save the subscription to the database
+        subscription = Subscription(
+            subscription_id=subscription_id,
+            user_id=user_id,
+            plan_id=plan_id,
+            status='PENDING'
+        )
+        db.session.add(subscription)
+        db.session.commit()
+
+        return jsonify({'subscription_id': subscription_id, 'approval_url': approval_url}), 201
+    else:
+        logger.error(f"Failed to create subscription: {response_data}")
+        return jsonify({'error': response_data}), response.status_code
 
 def verify_webhook_signature(headers, body):
     response = requests.post(
@@ -140,37 +179,40 @@ def verify_webhook_signature(headers, body):
 def webhook():
     try:
         headers = request.headers
-        body = request.json
+        event_body = request.data.decode('utf-8')
 
-        logger.info("Received webhook event")
+        logger.info("----------------------------------------")
+        logger.info("Received webhook event ")
         logger.debug(f"Headers: {headers}")
-        logger.debug(f"Body: {body}")
+        logger.debug(f"Body: {event_body}")
 
         # Verify the webhook signature
-        if not verify_webhook_signature(headers, body):
-            logger.debug("verify webhook signature failed")
+        if not verify_signature(event_body, headers):
+            logger.warning("Invalid signature")
             return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
 
         # Process the event
-        event_type = body['event_type']
-        resource = body['resource']
-        logger.info(f"Processing event: {event_type}")
+        event = request.json
+        event_type = event['event_type']
+        resource = event['resource']
+        subscription_id = resource.get('id')
 
-        if event_type == 'BILLING.SUBSCRIPTION.CREATED':
-            subscription_id = resource['id']
-            # Handle subscription creation
-            logger.info(f"Subscription created: {subscription_id}")
-        elif event_type == 'BILLING.SUBSCRIPTION.ACTIVATED':
-            subscription_id = resource['id']
-            # Handle subscription activation
-            logger.info(f"Subscription activated: {subscription_id}")
-        elif event_type == 'BILLING.SUBSCRIPTION.CANCELLED':
-            subscription_id = resource['id']
-            # Handle subscription cancellation
-            logger.info(f"Subscription cancelled: {subscription_id}")
-        # Handle other events as needed
+        if not subscription_id:
+            logger.warning("No subscription ID in the webhook event")
+            return jsonify({'status': 'failure', 'message': 'No subscription ID in the event'}), 400
 
-        return jsonify({'status': 'success'}), 200
+        # Check if the event type is a billing subscription event
+        if event_type.startswith('BILLING.SUBSCRIPTION'):
+            status = resource.get('status').upper()
+            subscription = Subscription.find_by_subscription_id(subscription_id)
+            if subscription:
+                subscription.status = status
+                db.session.commit()
+                logger.info(f"Updated subscription {subscription_id} status to {status}")
+                return jsonify({'status': 'success'}), 200
+
+        logger.warning(f"Unhandled event type: {event_type}")
+        return jsonify({'status': 'failure', 'message': 'Unhandled event type'}), 400
     except Exception as e:
         logger.error(f"Error processing webhook: {e}")
         return jsonify({'status': 'failure', 'message': 'Internal server error'}), 500

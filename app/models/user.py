@@ -9,6 +9,7 @@ class User(db.Model):
     membership = db.Column(db.Enum('FREE', 'PREMIUM', 'VIP', name='membership_types'), default='FREE')
     status = db.Column(db.Enum('ACTIVE', 'INACTIVE', 'BANNED', name='status_types'), default='ACTIVE')
     # history = db.relationship('History', backref='user', lazy=True)
+    subscriptions = db.relationship('Subscription', backref='user', lazy=True)
 
     @property
     def password(self):
