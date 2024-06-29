@@ -527,3 +527,121 @@ Content-Length: 3299
 2024-06-29 12:03:55,091 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:03:55] "[31m[1mPOST /paypal/subscriptions/I-NNKU8E3V15WT/suspend HTTP/1.1[0m" 422 -
 2024-06-29 12:05:07,347 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:05:07] "GET /paypal/plans HTTP/1.1" 200 -
 2024-06-29 12:05:08,262 - werkzeug - INFO - 127.0.0.1 - - [29/Jun/2024 12:05:08] "GET /paypal/subscriptions HTTP/1.1" 200 -
+2024-06-29 12:42:11,216 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:11,428 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:12,050 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:12,062 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:21,236 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:21,330 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:21,788 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:21,801 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:22,828 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:22,959 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:23,324 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:23,330 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:33,521 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:33,622 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:34,059 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:34,067 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:37,134 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:37,223 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:37,542 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:37,548 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:38,577 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:42:38,724 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:39,090 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:39,099 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:50,318 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:42:50,415 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:50,882 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:50,890 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:53,960 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:42:54,056 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:54,387 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:54,394 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:42:55,426 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:42:55,511 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:42:55,832 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:42:55,838 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:43:01,978 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:43:02,065 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:43:02,429 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:43:02,436 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:43:08,554 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:43:08,633 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:43:08,984 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:43:08,994 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:43:10,018 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 12:43:10,134 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:43:10,515 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:43:10,524 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:43:17,656 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:43:17,776 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:43:18,147 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:43:18,155 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:43:51,795 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:43:51,892 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:43:52,346 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:43:52,354 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:44:00,534 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:44:00,622 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:44:00,967 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:44:00,976 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:44:13,224 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:44:13,394 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:44:13,941 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:44:13,950 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:44:22,123 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:44:22,218 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:44:22,559 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:44:22,567 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:44:25,646 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:44:25,727 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:44:26,049 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:44:26,055 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:44:31,171 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:44:31,307 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:44:31,724 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:44:31,732 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 12:46:27,982 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 12:46:28,173 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 12:46:28,701 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 12:46:28,711 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:04:29,355 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 13:04:29,447 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:04:29,950 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:04:29,963 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:04:33,021 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 13:04:33,137 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:04:33,564 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:04:33,570 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:04:40,716 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/user.py', reloading
+2024-06-29 13:04:40,807 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:04:41,348 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:04:41,356 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:41:10,211 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 13:41:10,340 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:41:10,902 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:41:10,912 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:42:36,465 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/models/subscription.py', reloading
+2024-06-29 13:42:36,591 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:42:37,151 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:42:37,161 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:57:00,276 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/helpers.py', reloading
+2024-06-29 13:57:00,484 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:57:01,000 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:57:01,008 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:57:03,056 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/helpers.py', reloading
+2024-06-29 13:57:03,149 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:57:03,499 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:57:03,507 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:57:04,529 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/helpers.py', reloading
+2024-06-29 13:57:04,633 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:57:04,975 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:57:04,982 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 13:57:08,054 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/helpers.py', reloading
+2024-06-29 13:57:08,196 - werkzeug - INFO -  * Restarting with stat
+2024-06-29 13:57:08,578 - werkzeug - WARNING -  * Debugger is active!
+2024-06-29 13:57:08,595 - werkzeug - INFO -  * Debugger PIN: 146-084-898
+2024-06-29 14:01:46,819 - werkzeug - INFO -  * Detected change in '/Users/wangxiaopei/work/english-reader-backend/app/routes/paypal.py', reloading
+2024-06-29 14:01:46,975 - werkzeug - INFO -  * Restarting with stat

@@ -278,38 +278,108 @@ def webhook():
         headers = request.headers
         event_body = request.data.decode('utf-8')
 
-        logger.info("----------------------------------------")
-        logger.info("Received webhook event ")
+        logger.info("Received webhook event")
         logger.debug(f"Headers: {headers}")
         logger.debug(f"Body: {event_body}")
 
         # Verify the webhook signature
-        # if not verify_signature(event_body, headers):
-        #     logger.warning("Invalid signature")
-        #     return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
+        if not verify_signature(event_body, headers):
+            logger.warning("Invalid signature")
+            return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
 
         # Process the event
         event = request.json
         event_type = event['event_type']
         resource = event['resource']
-        subscription_id = resource.get('id')
+        
+        logger.info(f"Event type: {event_type}, Resource ID: {resource.get('id')}")
 
-        if not subscription_id:
-            logger.warning("No subscription ID in the webhook event")
-            return jsonify({'status': 'failure', 'message': 'No subscription ID in the event'}), 400
+        if event_type == 'PAYMENT.SALE.COMPLETED':
+            subscription_id = resource['billing_agreement_id']
+            subscription = Subscription.find_by_subscription_id(subscription_id)
+            if subscription:
+                user = subscription.user
+                user.premium = True
+                plan = subscription.plan
+                if subscription.user.expires_at and subscription.user.expires_at > datetime.utcnow():
+                    current_expiry = subscription.user.expires_at
+                else:
+                    current_expiry = datetime.utcnow()                
+                user.expires_at = calculate_new_expiry_date(current_expiry, plan.interval_unit, plan.interval_count)
 
-        # Check if the event type is a billing subscription event
-        if event_type.startswith('BILLING.SUBSCRIPTION'):
+                db.session.commit()
+                logger.info(f"Updated user {user.id} premium status to {user.premium} and expires_at to {user.expires_at} due to payment completion")
+                return jsonify({'status': 'success'}), 200
+
+            logger.warning(f"Subscription {subscription_id} not found for payment completion")
+            return jsonify({'status': 'failure', 'message': 'Subscription not found for payment completion'}), 404
+
+        elif event_type.startswith('BILLING.SUBSCRIPTION'):
+            subscription_id = resource.get('id')
             status = resource.get('status').upper()
+
+            if not subscription_id:
+                logger.warning("No subscription ID in the webhook event")
+                return jsonify({'status': 'failure', 'message': 'No subscription ID in the event'}), 400
+
+            # Log the event type and status
+            logger.info(f"Event type: {event_type}, Subscription ID: {subscription_id}, Status: {status}")
+
+            # Update subscription status but not user premium status
             subscription = Subscription.find_by_subscription_id(subscription_id)
             if subscription:
                 subscription.status = status
+
+                if status == 'EXPIRED':
+                    user = subscription.user
+                    user.premium = False
+                    user.expires_at = None
+
                 db.session.commit()
+
                 logger.info(f"Updated subscription {subscription_id} status to {status}")
                 return jsonify({'status': 'success'}), 200
 
-        # logger.warning(f"Unhandled event type: {event_type}")
+            logger.warning(f"Subscription {subscription_id} not found")
+            return jsonify({'status': 'failure', 'message': 'Subscription not found'}), 404
+
+        logger.warning(f"Unhandled event type: {event_type}")
         return jsonify({'status': 'failure', 'message': 'Unhandled event type'}), 400
     except Exception as e:
         logger.error(f"Error processing webhook: {e}")
+        return jsonify({'status': 'failure', 'message': 'Internal server error'}), 500
+
+@paypal_bp.route('/refund', methods=['POST'])
+@jwt_required()
+def process_refund():
+    try:
+        user_id = get_jwt_identity()
+        subscription_id = request.json.get('subscription_id')
+        
+        subscription = Subscription.query.filter_by(user_id=user_id, subscription_id=subscription_id).first()
+        if not subscription:
+            return jsonify({'error': 'Subscription not found'}), 404
+
+        # Process refund via PayPal API
+        token = get_paypal_token()
+        refund_url = f'{PAYPAL_API_BASE}/v1/payments/sale/{subscription_id}/refund'
+        response = requests.post(
+            refund_url,
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {token}'
+            },
+            json={'amount': {'total': str(subscription.plan_cost), 'currency': 'USD'}}
+        )
+        
+        if response.status_code == 201:
+            user = subscription.user
+            user.premium = False
+            user.expires_at = None
+            db.session.commit()
+            return jsonify({'status': 'success'}), 200
+        else:
+            return jsonify({'error': 'Failed to process refund'}), response.status_code
+    except Exception as e:
+        logger.error(f"Error processing refund: {e}")
         return jsonify({'status': 'failure', 'message': 'Internal server error'}), 500
