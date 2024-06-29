@@ -3,6 +3,18 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 import requests
 import os
 from dotenv import load_dotenv
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("app.log"),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 paypal_bp = Blueprint('paypal', __name__)
 load_dotenv()
@@ -112,6 +124,10 @@ def webhook():
         headers = request.headers
         body = request.json
 
+        logger.info("Received webhook event")
+        logger.debug(f"Headers: {headers}")
+        logger.debug(f"Body: {body}")
+
         # Verify the webhook signature
         if not verify_webhook_signature(headers, body):
             return jsonify({'status': 'failure', 'message': 'Invalid signature'}), 400
@@ -119,18 +135,23 @@ def webhook():
         # Process the event
         event_type = body['event_type']
         resource = body['resource']
+        logger.info(f"Processing event: {event_type}")
+
         if event_type == 'BILLING.SUBSCRIPTION.CREATED':
             subscription_id = resource['id']
             # Handle subscription creation
+            logger.info(f"Subscription created: {subscription_id}")
         elif event_type == 'BILLING.SUBSCRIPTION.ACTIVATED':
             subscription_id = resource['id']
             # Handle subscription activation
+            logger.info(f"Subscription activated: {subscription_id}")
         elif event_type == 'BILLING.SUBSCRIPTION.CANCELLED':
             subscription_id = resource['id']
             # Handle subscription cancellation
+            logger.info(f"Subscription cancelled: {subscription_id}")
         # Handle other events as needed
 
         return jsonify({'status': 'success'}), 200
     except Exception as e:
-        print(f"Error processing webhook: {e}")
+        logger.error(f"Error processing webhook: {e}")
         return jsonify({'status': 'failure', 'message': 'Internal server error'}), 500
