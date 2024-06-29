@@ -85,7 +85,7 @@ def create_plan(product_id, name, description, interval_unit, interval_count, va
 def store_plan(product_id, plan_id, name, description, interval_unit, interval_count, value, currency):
     plan = Plan(
         product_id=product_id,
-        plan_id=plan_id,
+        id=plan_id,
         name=name,
         description=description,
         interval_unit=interval_unit,
@@ -106,10 +106,11 @@ def main():
 
     # Define plans
     plans = [
-        {"name": "VIP Monthly Plan",    "description": "Monthly subscription for VIP membership",       "interval_unit": "MONTH", "interval_count": 1, "value": "9.90", "currency": "USD"},
-        {"name": "VIP Quarterly Plan",  "description": "Quarterly subscription for VIP membership",     "interval_unit": "MONTH", "interval_count": 3, "value": "27.00", "currency": "USD"},
-        {"name": "VIP Semi-Annual Plan","description": "Semi-Annual subscription for VIP membership",   "interval_unit": "MONTH", "interval_count": 6, "value": "48.00", "currency": "USD"},
-        {"name": "VIP Annual Plan",     "description": "Annual subscription for VIP membership",        "interval_unit": "MONTH", "interval_count": 12, "value": "72.00", "currency": "USD"}
+        {"name": "Premium Dayly Plan",      "description": "Daily subscription for Premium membership",         "interval_unit": "DAY", "interval_count": 1, "value": "0.90", "currency": "USD"},
+        {"name": "Premium Monthly Plan",    "description": "Monthly subscription for Premium membership",       "interval_unit": "MONTH", "interval_count": 1, "value": "9.90", "currency": "USD"},
+        {"name": "Premium Quarterly Plan",  "description": "Quarterly subscription for Premium membership",     "interval_unit": "MONTH", "interval_count": 3, "value": "27.00", "currency": "USD"},
+        {"name": "Premium Semi-Annual Plan","description": "Semi-Annual subscription for Premium membership",   "interval_unit": "MONTH", "interval_count": 6, "value": "48.00", "currency": "USD"},
+        {"name": "Premium Annual Plan",     "description": "Annual subscription for Premium membership",        "interval_unit": "MONTH", "interval_count": 12, "value": "72.00", "currency": "USD"}
     ]
 
     # Create and store each plan

@@ -11,6 +11,7 @@ class User(db.Model):
     expires_at = db.Column(db.DateTime, nullable=True)
     status = db.Column(db.Enum('ACTIVE', 'INACTIVE', 'BANNED', name='status_types'), default='ACTIVE')
     # history = db.relationship('History', backref='user', lazy=True)
+    # subscriptions = db.relationship('Subscription', backref='user', lazy=True)
     subscriptions = db.relationship('Subscription', backref='user', lazy=True)
 
     @property
