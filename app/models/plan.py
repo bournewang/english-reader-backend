@@ -12,4 +12,4 @@ class Plan(db.Model):
     interval_count = db.Column(db.Integer, nullable=False)
     value = db.Column(db.String(50), nullable=False)
     currency = db.Column(db.String(50), nullable=False)
-    subscriptions = db.relationship('Subscription', backref='article', lazy=True)
+    subscriptions = db.relationship('Subscription', backref='plan', lazy=True)
