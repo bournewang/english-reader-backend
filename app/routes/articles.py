@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..models.article import Article
 from ..models.paragraph import Paragraph
+from ..models.user import User
 from ..extensions import db
 import time
 
@@ -61,8 +62,13 @@ def create_article():
 @jwt_required()
 def get_user_articles():
     user_id = get_jwt_identity()
+    user = User.query.get(user_id)
     # make articles order by id desc
-    articles = Article.query.filter_by(user_id=user_id).order_by(Article.id.desc()).all()
+    articles = Article.query.filter_by(user_id=user_id).order_by(Article.id.desc())
+    if not user.premium:
+        articles = articles.limit(3)
+
+    articles = articles.all()
     articles_list = [article.brief() for article in articles]
 
     return jsonify({'success': True, 'data': articles_list})

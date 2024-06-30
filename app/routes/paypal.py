@@ -6,8 +6,10 @@ from dotenv import load_dotenv
 from ..models.plan import Plan
 from ..models.subscription import Subscription
 from ..extensions import db
+from datetime import datetime
 import uuid
 import logging
+from ..helpers import calculate_new_expiry_date
 
 # Configure logging
 logging.basicConfig(
@@ -28,8 +30,6 @@ PAYPAL_SECRET = os.getenv('PAYPAL_SECRET')
 PAYPAL_API_BASE = 'https://api-m.sandbox.paypal.com'  # Use sandbox for testing
 PAYPAL_WEBHOOK_ID = os.getenv('PAYPAL_WEBHOOK_ID')
 BRAND_NAME = os.getenv('BRAND_NAME')
-# Simulated database
-subscriptions = {}
 
 def get_paypal_token():
     response = requests.post(
@@ -74,17 +74,12 @@ def create_plan():
 @jwt_required()
 def get_plans():
     plans = Plan.query.all()
-    plan_list = [{
-        'product_id': plan.product_id,
-        'plan_id': plan.id,
-        'name': plan.name,
-        'description': plan.description,
-        'interval_unit': plan.interval_unit,
-        'interval_count': plan.interval_count,
-        'value': plan.value,
-        'currency': plan.currency
-    } for plan in plans]
-    
+    plan_list = [plan.info() for plan in plans]
+
+    # Add the free plan to the list
+    free_plan = Plan.free()
+    plan_list.insert(0, free_plan)
+
     return jsonify(plan_list)
 
 @paypal_bp.route('/create-subscription', methods=['POST'])
@@ -96,9 +91,6 @@ def create_subscription():
     plan_id = data['plan_id']
     # fetch plan from database
     plan = Plan.query.get(plan_id)
-    
-    subscription_id = str(uuid.uuid4())
-    subscriptions[subscription_id] = {'user_id': user_id, 'status': 'pending'}
     
     response = requests.post(
         f'{PAYPAL_API_BASE}/v1/billing/subscriptions',

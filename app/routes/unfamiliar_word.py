@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..models.unfamiliar_word import UnfamiliarWord
+from ..models.user import User
 from ..extensions import db
 
 unfamiliar_word_bp = Blueprint('unfamiliar_word', __name__)
@@ -52,8 +53,16 @@ def add_unfamiliar_word():
 @unfamiliar_word_bp.route('/get', methods=['GET'])
 @jwt_required()
 def get_unfamiliar_word():
-    current_user_id = get_jwt_identity()
-    unfamiliar_words = UnfamiliarWord.query.filter_by(user_id=current_user_id).order_by(UnfamiliarWord.created_at.desc()).all()
+    user_id = get_jwt_identity()
+    # unfamiliar_words = UnfamiliarWord.query.filter_by(user_id=user_id).order_by(UnfamiliarWord.created_at.desc()).all()
+    user = User.query.get(user_id)
+    # make articles order by id desc
+    unfamiliar_words = UnfamiliarWord.query.filter_by(user_id=user_id).order_by(UnfamiliarWord.id.desc())
+    if not user.premium:
+        unfamiliar_words = unfamiliar_words.limit(30)
+
+    unfamiliar_words = unfamiliar_words.all()
+
     word_list = [{
         'word': lw.word,
         'article_id': lw.article_id,

@@ -1,7 +1,7 @@
 import sys
 import os
 import pytest
-from app import create_app
+from ..app import create_app
 from app.extensions import db
 from tests.test_config import TestConfig
 

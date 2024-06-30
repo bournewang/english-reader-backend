@@ -33,12 +33,12 @@ def login():
     return jsonify({'message': 'Invalid credentials'}), 401
 
 # Protected route
-@auth_bp.route('/protected', methods=['GET'])
+@auth_bp.route('/info', methods=['GET'])
 @jwt_required()
 def protected():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
-    return jsonify(logged_in_as=user.email), 200
+    return jsonify(data=user.info()), 200
 
 # Logout route
 @auth_bp.route('/logout', methods=['POST'])
