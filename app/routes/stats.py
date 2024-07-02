@@ -47,7 +47,8 @@ def statistics():
         previous += 10
         if previous == 0:
             return None
-        return ((current - previous) / previous) * 100
+        # round the percentage with 2 decimal places
+        return round(((current - previous) / previous) * 100, 2)
     
     stats = {
         'today_articles': today_articles,
