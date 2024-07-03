@@ -21,12 +21,12 @@ def create_article():
 
         new_article = Article(
             user_id=user_id, 
-            title=data.get('title'),
+            title=data.get('title')[:200],
             word_count=word_count,
-            author=data.get('author'),
-            url=data.get('url'),
-            site_name=data.get('site_name'),
-            site_icon=data.get('site_icon')
+            author=data.get('author')[:100],
+            url=data.get('url')[:500],
+            site_name=data.get('site_name')[:100],
+            site_icon=data.get('site_icon')[:500]
         )
         db.session.add(new_article)
         db.session.commit()  # Commit to get the article ID

@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..models.unfamiliar_word import UnfamiliarWord
 from ..models.user import User
+from ..models.article import Article
 from ..extensions import db
 
 unfamiliar_word_bp = Blueprint('unfamiliar_word', __name__)
@@ -48,7 +49,49 @@ def add_unfamiliar_word():
                     'unfamiliar_words': [lw.word for lw in list(set(article.unfamiliar_words))]
                 }
             }
-        }), 201
+        }), 200
+
+@unfamiliar_word_bp.route('/delete', methods=['DELETE'])
+@jwt_required()
+def delete_unfamiliar_word():
+    data = request.get_json()
+    current_user_id = get_jwt_identity()
+    word = data.get('word')
+    article_id = data.get('article_id')
+    paragraph_id = data.get('paragraph_id')
+
+    try:
+        looking_word = UnfamiliarWord.query.filter_by(
+            user_id=current_user_id,
+            word=word,
+            article_id=article_id,
+            # paragraph_id=paragraph_id
+        ).first()
+
+        if looking_word:
+            db.session.delete(looking_word)
+            db.session.commit()
+            article = Article.query.get(article_id)
+            return jsonify({
+                    'success':True, 
+                    'message': 'Word added to history successfully', 
+                    "data": {
+                        'id': None,
+                        'article_id': article_id,
+                        'paragraph_id': paragraph_id,
+                        'article': {
+                            'id': article.id,
+                            'title': article.title,
+                            'unfamiliar_words': [lw.word for lw in list(set(article.unfamiliar_words))]
+                        }
+                    }
+                }), 200
+        else:
+            return jsonify({'success': False, 'message': 'Word not found'}), 404
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 @unfamiliar_word_bp.route('/get', methods=['GET'])
 @jwt_required()
