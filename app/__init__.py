@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_caching import Cache
 from .extensions import db, migrate, jwt, bcrypt
-from .routes import auth_bp, articles_bp, unfamiliar_word_bp, stats_bp, order_bp, paypal_bp, translate_bp
+from .routes import auth_bp, articles_bp, unfamiliar_word_bp, stats_bp, order_bp, paypal_bp, translate_bp, user_bp
 from .helpers import check_if_token_is_revoked
 
 def create_app():
@@ -26,6 +26,7 @@ def create_app():
     app.register_blueprint(order_bp, url_prefix='/order')
     app.register_blueprint(paypal_bp, url_prefix='/paypal')
     app.register_blueprint(translate_bp, url_prefix='/translate')
+    app.register_blueprint(user_bp, url_prefix='/user')
 
     return app
 

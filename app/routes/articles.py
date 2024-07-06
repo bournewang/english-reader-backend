@@ -65,8 +65,8 @@ def get_user_articles():
     user = User.query.get(user_id)
     # make articles order by id desc
     articles = Article.query.filter_by(user_id=user_id).order_by(Article.id.desc())
-    if not user.premium:
-        articles = articles.limit(3)
+    # if not user.premium:
+    #     articles = articles.limit(3)
 
     articles = articles.all()
     articles_list = [article.brief() for article in articles]

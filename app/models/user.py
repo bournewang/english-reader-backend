@@ -12,6 +12,8 @@ class User(db.Model):
     status = db.Column(db.Enum('ACTIVE', 'INACTIVE', 'BANNED', name='status_types'), default='ACTIVE')
     # history = db.relationship('History', backref='user', lazy=True)
     # subscriptions = db.relationship('Subscription', backref='user', lazy=True)
+    locale = db.Column(db.String(10), default='')
+    country = db.Column(db.String(32), default='') 
     subscriptions = db.relationship('Subscription', backref='user', lazy=True)
 
     @property
@@ -32,5 +34,7 @@ class User(db.Model):
             'created_at': self.created_at,
             'premium': self.premium,
             'expires_at': self.expires_at,
+            'locale': self.locale,
+            'country': self.country,
             'status': self.status
         }
