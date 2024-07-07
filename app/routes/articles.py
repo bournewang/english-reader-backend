@@ -15,6 +15,15 @@ def create_article():
     user_id = get_jwt_identity()
     paragraphs = data.get('paragraphs')
 
+    # if the article with url already exsits, return the article json 
+    article = Article.query.filter_by(url=data.get('url')).first()
+    if article:
+        return jsonify(
+            success=False,
+            message='Article already exists.',
+            data=article.json()
+        )
+
     try:
         paragraphs = [p for p in paragraphs if p and p.strip()]
         word_count = sum(len(paragraph.split()) for paragraph in paragraphs)

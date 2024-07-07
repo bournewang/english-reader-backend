@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_caching import Cache
+from flask_cors import CORS
 from .extensions import db, migrate, jwt, bcrypt
 from .routes import auth_bp, articles_bp, unfamiliar_word_bp, stats_bp, order_bp, paypal_bp, translate_bp, user_bp
 from .helpers import check_if_token_is_revoked
@@ -7,6 +8,7 @@ from .helpers import check_if_token_is_revoked
 def create_app():
     app = Flask(__name__)
     app.config.from_object('app.config.Config')
+    CORS(app)
 
     # Initialize extensions
     db.init_app(app)
