@@ -19,7 +19,7 @@ def create_article():
     article = Article.query.filter_by(url=data.get('url')).first()
     if article:
         return jsonify(
-            success=False,
+            success=True,
             message='Article already exists.',
             data=article.json()
         )
