@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     title = db.Column(db.String(200), nullable=False)
     word_count = db.Column(db.Integer, nullable=False)
     author = db.Column(db.String(100), nullable=True)
@@ -15,7 +15,7 @@ class Article(db.Model):
     site_icon = db.Column(db.String(500), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     paragraphs = db.relationship('Paragraph', backref='article', lazy=True)
-    unfamiliar_words = db.relationship('UnfamiliarWord', backref='article', lazy=True)
+    reading_articles = db.relationship('ReadingArticle', backref='article', lazy=True)
 
     @staticmethod
     def extract_site(url):
@@ -43,7 +43,7 @@ class Article(db.Model):
     def json(self):
         info = self.brief()
         info['paragraphs'] = {p.id: p.text for p in self.paragraphs}
-        info['unfamiliar_words'] = [lw.word for lw in list(set(self.unfamiliar_words))]
+        # info['unfamiliar_words'] = [lw.word for lw in list(set(self.unfamiliar_words))]
         return info
 
 from sqlalchemy import event

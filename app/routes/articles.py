@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from ..models.article import Article
+from ..models.article import ReadingArticle
 from ..models.paragraph import Paragraph
 from ..models.user import User
 from ..extensions import db
@@ -16,11 +16,11 @@ def create_article():
     paragraphs = data.get('paragraphs')
 
     # if the article with url already exsits, return the article json 
-    article = Article.query.filter_by(url=data.get('url')).first()
+    article = ReadingArticle.query.filter_by(url=data.get('url')).first()
     if article:
         return jsonify(
             success=True,
-            message='Article already exists.',
+            message='ReadingArticle already exists.',
             data=article.json()
         )
 
@@ -28,7 +28,7 @@ def create_article():
         paragraphs = [p for p in paragraphs if p and p.strip()]
         word_count = sum(len(paragraph.split()) for paragraph in paragraphs)
 
-        new_article = Article(
+        new_article = ReadingArticle(
             user_id=user_id, 
             title=data.get('title')[:200],
             word_count=word_count,
@@ -53,7 +53,7 @@ def create_article():
 
         response = {
             'success': True,
-            'message': 'Article created successfully',
+            'message': 'ReadingArticle created successfully',
             'data': new_article.json()
         }
         return jsonify(response), 201
@@ -67,25 +67,9 @@ def create_article():
         }
         return jsonify(response), 500
 
-@articles_bp.route('/list', methods=['GET'])
-@jwt_required()
-def get_user_articles():
-    user_id = get_jwt_identity()
-    user = User.query.get(user_id)
-    # make articles order by id desc
-    articles = Article.query.filter_by(user_id=user_id).order_by(Article.id.desc())
-    # if not user.premium:
-    #     articles = articles.limit(3)
-
-    articles = articles.all()
-    articles_list = [article.brief() for article in articles]
-
-    return jsonify({'success': True, 'data': articles_list})
-
-
 @articles_bp.route('/<int:article_id>', methods=['GET'])
 @jwt_required()
 def get_article(article_id):
-    article = Article.query.get_or_404(article_id)
+    article = ReadingArticle.query.get_or_404(article_id)
 
     return jsonify({'success': True, 'data': article.json()}), 200
