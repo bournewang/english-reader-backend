@@ -2,7 +2,7 @@ from flask import Flask
 from flask_caching import Cache
 from flask_cors import CORS
 from .extensions import db, migrate, jwt, bcrypt
-from .routes import auth_bp, reading_articles_bp, unfamiliar_word_bp, stats_bp, order_bp, paypal_bp, translate_bp, user_bp, reading_bp
+from .routes import auth_bp, reading_articles_bp, unfamiliar_word_bp, stats_bp, order_bp, paypal_bp, translate_bp, user_bp, reading_bp, extract_bp
 from .helpers import check_if_token_is_revoked
 
 def create_app():
@@ -30,6 +30,7 @@ def create_app():
     app.register_blueprint(translate_bp, url_prefix='/translate')
     app.register_blueprint(user_bp, url_prefix='/user')
     app.register_blueprint(reading_bp, url_prefix='/reading')
+    app.register_blueprint(extract_bp, url_prefix='/extract')
 
     return app
 
