@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from typing import Dict, Optional
 from datetime import datetime
 from urllib.parse import urlparse
+import urllib.parse
 
 extract_bp = Blueprint('extract', __name__)
 
@@ -37,6 +38,7 @@ def collect_article_info(soup: BeautifulSoup, url: str) -> dict:
             break
 
     domain = urlparse(url).netloc
+    print("title: ",soup.title.string)
     return {
         'url': url,
         'title': soup.title.string if soup.title else '',
@@ -145,9 +147,54 @@ def extract_article():
             'unfamiliar_words': []
         }
 
+        print(article)
+
         return jsonify(article)
 
     except requests.RequestException as e:
         return jsonify({'error': f'Failed to fetch URL: {str(e)}'}), 400
+    except Exception as e:
+        return jsonify({'error': f'Server error: {str(e)}'}), 500
+
+@extract_bp.route('/image', methods=['GET'])
+def search_image():
+    try:
+        keyword = request.args.get('keyword')
+        if not keyword:
+            return jsonify({'error': 'Keyword is required'}), 400
+
+        encoded_keyword = urllib.parse.quote(keyword)
+        url = f'https://unsplash.com/napi/search/photos?page=1&per_page=20&query={encoded_keyword}&xp=free-semantic-perf%3Acontrol'
+        
+        headers = {
+            'authority': 'unsplash.com',
+            'accept': '*/*',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US',
+            'client-geo-region': 'global',
+            'dnt': '1',
+            'priority': 'u=1, i',
+            'referer': f'https://unsplash.com/s/photos/{encoded_keyword}',
+            'sec-ch-ua': '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"macOS"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
+            'cookie': 'require_cookie_consent=false; xp-free-semantic-perf=control; xp-video-affiliates=experiment; xp-no-ads-in-wp-search=experiment; _sp_ses.0295=*; azk=38d68723-1b93-41de-b95f-4f4a55f15abe; azk-ss=true; _dd_s=aid=yu5142p4mv&logs=1&id=617f02a7-868e-4b68-a4f9-7a8f2b1a9888&created=1741783152144&expire=1741784086055; _sp_id.0295=9135bd59-269f-4aad-80b5-e72083feb925.1741783152.1.1741783186..46333548-dc7a-4877-aaff-154e8f97176b..d33a3eaf-1fdd-45bf-b5de-fdb8c81f7089.1741783152255.22'
+        }
+        
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+        
+        data = response.json()
+        if data and 'results' in data and len(data['results']) > 0:
+            return jsonify({'url': data['results'][0]['urls']['thumb']})
+        
+        return jsonify({'error': 'No images found'}), 404
+
+    except requests.RequestException as e:
+        return jsonify({'error': f'Failed to fetch image: {str(e)}'}), 400
     except Exception as e:
         return jsonify({'error': f'Server error: {str(e)}'}), 500

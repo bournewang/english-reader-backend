@@ -8,3 +8,4 @@ from .translate import translate_bp
 from .user import user_bp
 from .reading import reading_bp
 from .extract import extract_bp
+from .ai import ai_bp
