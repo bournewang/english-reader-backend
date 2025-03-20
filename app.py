@@ -7,7 +7,7 @@ CORS(app, resources={
         "origins": [
             "http://localhost:3000",
             "http://127.0.0.1:3000",
-            "https://read.english-reader.com"
+            "https://read.english-reader.com/"
         ],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"]
